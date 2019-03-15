@@ -149,7 +149,7 @@ def merge_indices(indices):
     return output
 
 
-class InvertedIndexer(object):
+class Indexer(object):
     # TODO: Write doc-string
     def __init__(self, tokenizer):
         self.tokenizer = tokenizer
@@ -177,7 +177,7 @@ class InvertedIndexer(object):
             bigram_index.setdefault(word_[i:i+2], set()).add(word)
         return bigram_index
 
-    def construct_inverted_index_from_id_words(self, id_words):
+    def construct_indices_from_id_words(self, id_words):
         # TODO: Write doc-string
         inverted_index = {}
         bigram_indices = []
@@ -192,9 +192,9 @@ class InvertedIndexer(object):
     def helper(self, path):
         # TODO: Write doc-string
         id_words = self.extract_tokens(path)
-        return self.construct_inverted_index_from_id_words(id_words)
+        return self.construct_indices_from_id_words(id_words)
 
-    def construct_all_inverted_indices(self, paths, parallelism=None):
+    def construct_all_indices(self, paths, parallelism=None):
         # TODO: Write doc-string
         if not parallelism:
             parallelism = os.cpu_count()
@@ -248,7 +248,7 @@ if __name__ == "__main__":
     file_paths = [os.path.join(base_folder, "reut2-{:03d}.sgm".format(i)) for i in range(22)]
 
     tokenizer = Tokenizer(punctuations_path, stopwords_path)
-    inverted_indexer = InvertedIndexer(tokenizer)
-    inverted_index_set, bigrams_set = inverted_indexer.construct_all_inverted_indices(file_paths)
+    indexer = Indexer(tokenizer)
+    inverted_index_set, bigrams_set = indexer.construct_all_indices(file_paths)
     save_index(inverted_index_path, convert_set_to_list(inverted_index_set))
     save_index(bigrams_path, convert_set_to_list(bigrams_set))
