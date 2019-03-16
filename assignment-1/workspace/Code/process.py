@@ -173,12 +173,11 @@ class Processor(object):
         query = self.preprocess_query(query)
         if query_type == "wildcard":
             if "*" not in query:
-                begin = query
-                end = ""
+                terms = self.get_keywords(query)
             else:
                 begin, end = query.split("*")
-            bigrams = self.get_bigrams(begin, end)
-            terms = self.get_matched_terms(bigrams, begin, end)
+                bigrams = self.get_bigrams(begin, end)
+                terms = self.get_matched_terms(bigrams, begin, end)
         else:
             terms = self.get_keywords(query)
 
