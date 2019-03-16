@@ -1,46 +1,46 @@
-Number of terms before stopword removal and casefolding: 61159
+Number of terms before stopword removal and casefolding: 61462
 Top 20 terms before stopword removal and casefolding:
 Term: the, Frequency: 120018
-Term: of, Frequency: 72210
-Term: to, Frequency: 68683
-Term: and, Frequency: 53459
-Term: said, Frequency: 52890
-Term: in, Frequency: 49982
-Term: a, Frequency: 48437
-Term: 3, Frequency: 26678
-Term: for, Frequency: 25576
-Term: mln, Frequency: 25533
+Term: of, Frequency: 72267
+Term: to, Frequency: 68785
+Term: and, Frequency: 53476
+Term: said, Frequency: 52894
+Term: in, Frequency: 50021
+Term: a, Frequency: 48440
+Term: 3, Frequency: 26814
+Term: for, Frequency: 25595
+Term: mln, Frequency: 25591
 Term: The, Frequency: 24278
-Term: s, Frequency: 20512
-Term: dlrs, Frequency: 20292
-Term: it, Frequency: 18085
-Term: on, Frequency: 18018
-Term: pct, Frequency: 17050
+Term: s, Frequency: 20526
+Term: dlrs, Frequency: 20306
+Term: it, Frequency: 18098
+Term: on, Frequency: 18032
+Term: pct, Frequency: 17130
 Term: is, Frequency: 16739
-Term: lt, Frequency: 16664
-Term: 1, Frequency: 15614
+Term: lt, Frequency: 16666
+Term: 1, Frequency: 15895
 Term: that, Frequency: 15193
-Number of tokens before stopword removal: 2879387
-Number of tokens after stopword removal: 2205792
-Number of terms after stopword removal and casefolding: 45293
+Number of tokens before stopword removal: 2902785
+Number of tokens after stopword removal: 2227436
+Number of terms after stopword removal and casefolding: 45346
 Top 20 terms after stopword removal and casefolding:
-Term: to, Frequency: 72454
-Term: said, Frequency: 53006
-Term: s, Frequency: 32146
-Term: 3, Frequency: 26678
-Term: mln, Frequency: 26386
-Term: dlrs, Frequency: 20837
-Term: reuter, Frequency: 18962
-Term: pct, Frequency: 17626
-Term: lt, Frequency: 16678
-Term: 1, Frequency: 15614
-Term: from, Frequency: 15142
-Term: vs, Frequency: 14586
-Term: at, Frequency: 14374
-Term: 000, Frequency: 13366
-Term: year, Frequency: 13035
-Term: u, Frequency: 11056
-Term: billion, Frequency: 10494
-Term: has, Frequency: 10152
-Term: 2, Frequency: 9830
-Term: company, Frequency: 9687
+Term: to, Frequency: 73074
+Term: said, Frequency: 53096
+Term: s, Frequency: 32590
+Term: 3, Frequency: 26814
+Term: mln, Frequency: 26732
+Term: dlrs, Frequency: 21273
+Term: reuter, Frequency: 18964
+Term: pct, Frequency: 18046
+Term: lt, Frequency: 16680
+Term: 1, Frequency: 15895
+Term: from, Frequency: 15277
+Term: vs, Frequency: 14836
+Term: at, Frequency: 14517
+Term: 000, Frequency: 13448
+Term: year, Frequency: 13109
+Term: u, Frequency: 11326
+Term: billion, Frequency: 10726
+Term: has, Frequency: 10185
+Term: 2, Frequency: 9996
+Term: company, Frequency: 9699

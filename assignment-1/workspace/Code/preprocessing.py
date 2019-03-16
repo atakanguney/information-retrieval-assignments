@@ -59,7 +59,7 @@ class Reader(object):
             str:
                 Matched 'tag'
         """
-        reg_pat = r"<{}>(.*?)</{}>".format(tag, tag)
+        reg_pat = r"<{}.*?>(.*?)</{}>".format(tag, tag)
         p = re.compile(reg_pat, re.DOTALL)
         match = p.search(text)
         if match:
