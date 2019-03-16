@@ -5,8 +5,7 @@ from collections import Counter
 
 
 class Reader(object):
-    """Reader class to read data
-    """
+    """Reader class to read data"""
 
     @staticmethod
     def get_records(raw_text):
