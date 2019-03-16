@@ -204,8 +204,10 @@ if __name__ == "__main__":
     try:
         query_type = int(args[1])
         query_type = query_types[query_type]
-    except Exception as e:
-        raise ValueError("Unsupported query type: {}".format(args[1]))
+    except ValueError as ve:
+        raise ValueError("Query type must be integer: {}".format(args[1]))
+    except KeyError as ke:
+        raise KeyError("Unsupported query type: {}".format(args[1]))
     
     query_str = args[2]
     print(processor.search_qeury(query_str, query_type))
