@@ -1,8 +1,8 @@
-from functools import reduce
 import concurrent.futures
+import json
 import os
 import re
-import json
+from functools import reduce
 
 
 def get_records(raw_text):
@@ -128,13 +128,14 @@ class Tokenizer(object):
         # Replace puntuations with empty space
         for punc in self.punctuations:
             text = text.replace(punc, " ")
+        words = text.strip().split()
 
         # Case-Folding
-        text = text.lower()
+        words = [word.casefold() for word in words]
 
         # Remove stop-words
         return [
-            word for word in text.strip().split()
+            word for word in words
             if word not in self.stopwords
         ]
 
