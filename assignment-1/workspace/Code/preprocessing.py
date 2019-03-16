@@ -19,8 +19,8 @@ class Reader(object):
 
         Yields
         ======
-            str:
-                Record
+        str:
+            Record
         """
         p = re.compile(r"<REUTERS(.*?)</REUTERS>", re.DOTALL)
         for match in p.finditer(raw_text):
@@ -36,8 +36,8 @@ class Reader(object):
 
         Returns
         =======
-            int:
-                id of the record
+        int:
+            id of the record
         """
         p = re.compile(r'NEWID="(\d*?)"')
         match = p.search(record)
@@ -56,8 +56,8 @@ class Reader(object):
 
         Returns
         =======
-            str:
-                Matched 'tag'
+        str:
+            Matched 'tag'
         """
         reg_pat = r"<{}.*?>(.*?)</{}>".format(tag, tag)
         p = re.compile(reg_pat, re.DOTALL)
@@ -80,8 +80,8 @@ class Reader(object):
 
         Returns
         =======
-            str:
-                Raw Text
+        str:
+            Raw Text
         """
         with open(path, "rb") as f:
             return f.read().decode("latin-1")
@@ -97,8 +97,8 @@ class Reader(object):
 
         Returns
         =======
-            str:
-                id, title and body
+        str:
+            id, title and body
         """
         id_ = cls.get_id(record)
         text = cls.get_tag_from_text(record, "TEXT").strip()
@@ -137,19 +137,52 @@ class Tokenizer(object):
     """
     @staticmethod
     def read_punctuations(path):
-        # TODO: Write doc-string    
+        """Read punctuations from file
+
+        Parameters
+        ==========
+        path: str
+            Path to punctuations list
+    
+        Returns
+        =======
+        list:
+            List of punctuations
+        """    
         with open(path, "r") as f:
             return f.read().strip().split()
 
     @staticmethod
     def read_stopwords(path):
-        # TODO: Write doc-string
+        """Read stopwords
+
+        Parameters
+        ==========
+        path: str
+            Path to stopwords list
+
+        Returns
+        =======
+        list:
+            List of stopwords
+        """
         with open(path, "r") as f:
             return f.read().strip().split()
 
     @staticmethod
     def get_number_of_tokens(id_tokens):
-        # TODO: Write doc-string
+        """Get number of tokens from id_tokens dict
+
+        Parameters
+        ==========
+        id_tokens: dict
+            Dict of id: list of tokens
+
+        Returns
+        =======
+        int:
+            Number of tokens in corpus
+        """
         all_tokens = []
         for tokens in id_tokens.values():
             all_tokens.extend(tokens)
@@ -157,7 +190,18 @@ class Tokenizer(object):
 
     @staticmethod
     def get_number_of_terms_and_top_20(id_tokens):
-        # TODO: Write doc-string
+        """Get number of terms and top 20 frequent token
+
+        Parameters
+        ==========
+        id_tokens: dict
+            Dict of id: list of tokens
+
+        Returns
+        =======
+        tuple:
+            Number of unique tokens in the corpus and top 20 frequent tokens
+        """
         all_terms = []
         for tokens in id_tokens.values():
             all_terms.extend(tokens)
@@ -170,24 +214,69 @@ class Tokenizer(object):
         self.stopwords = self.read_stopwords(stopwords_path)
 
     def replace_punctuations(self, text):
-        # TODO: Write doc-string
+        """Replace punctuations for space for given text
+
+        Parameters
+        ==========
+        text: str
+            String to replace punctuations
+
+        Returns
+        =======
+        str:
+            String that punctuations are replaced with space
+        """
         for punc in self.punctuations:
             text = text.replace(punc, " ")
         return text
 
     def remove_stopwords(self, words):
-        # TODO: Write doc-string
+        """Remove stopwords from the list of words
+
+        Parameters
+        ==========
+        words: list
+            List of words
+
+        Returns
+        =======
+        list:
+            List of words that stopwords are excluded
+        """
         return [
             word for word in words
             if word not in self.stopwords
         ]
 
     def split_tokens(self, text):
-        # TODO: Write doc-string
+        """Split text into tokens by space
+
+        Parameters
+        ==========
+        text: str
+            Text to be splitted
+
+        Returns
+        =======
+        list:
+            List of tokens
+        """
         return text.strip().split()
 
     def replace_punctuations_and_split_tokens(self, text):
-        # TODO: Write doc-string
+        """Replace punctuations and split tokens
+
+        Parameters
+        ==========
+        text: str
+            Text to replace punctuations and split
+
+        Returns
+        =======
+        list:
+            List of tokens after punctuations replaced by space
+            and splitted by space
+        """
         # Replace puntuations with empty space
         text = self.replace_punctuations(text)
 
@@ -197,7 +286,18 @@ class Tokenizer(object):
         return tokens
 
     def casefolding(self, tokens):
-        # TODO: Write doc-string
+        """Apply case folding to every token in given token list
+
+        Parameters
+        ==========
+        tokens: list
+            List of tokens
+
+        Returns
+        =======
+        list:
+            List of tokens that each token is applied casefolding
+        """
         return [word.casefold() for word in tokens]
 
     def tokenize(self, text):
@@ -207,6 +307,11 @@ class Tokenizer(object):
         ==========
         text: str
             Text to tokenize
+
+        Returns
+        =======
+        list:
+            List of tokens after tokenization procedure is applied
         """
         # Replace punctuations and split tokens
         tokens = self.replace_punctuations_and_split_tokens(text)
@@ -221,10 +326,23 @@ class Tokenizer(object):
 
 
 class Indexer(object):
-    # TODO: Write doc-string
+    """Indexer Class"""
+
     @staticmethod
     def merge_indices(indices):
-        # TODO: Write doc-string
+        """Merge indices
+
+        Merges list of indices that are dict
+
+        Parameters
+        ==========
+        indices: list of index
+
+        Returns
+        =======
+        dict:
+            Merged indices
+        """
         output = {}
         for index in indices:
             for key, value in index.items():
@@ -233,7 +351,20 @@ class Indexer(object):
         return output
 
     def extract_bigram_index(self, word):
-        # TODO: Write doc-string
+        """Extract bigram index of giver word
+
+        A dictionary is constructed by bigrams generated from the given word
+
+        Parameters
+        ==========
+        word: str
+            Word to extract bigram index
+
+        Returns
+        =======
+        dict:
+            Index for given word
+        """
         bigram_index = {}
         word_ = "$" + word + "$"
         for i in range(0, len(word_) - 1):
@@ -241,7 +372,18 @@ class Indexer(object):
         return bigram_index
 
     def construct_indices_from_id_terms(self, id_terms):
-        # TODO: Write doc-string
+        """Construct inverted index and bigram index
+
+        Parameters
+        ==========
+        id_terms: dict
+            Dict of id: terms
+
+        Returns
+        =======
+        tuple:
+            Inverted index and Bigram index
+        """
         inverted_index = {}
         bigram_indices = []
         
@@ -254,26 +396,67 @@ class Indexer(object):
         return inverted_index, self.merge_indices(bigram_indices)
 
     def get_id_terms(self, id_tokens):
-        # TODO: Write doc-string
+        """Get id: terms pairs for given id: tokens pairs
+
+        Parameters
+        ==========
+        id_tokens: dict
+            Dictionary of id: tokens
+
+        Returns
+        =======
+        dict:
+            Dictionary of id: terms
+        """
         return {
             id_: set(tokens)
             for id_, tokens in id_tokens.items()
         }
 
     def construct_indices(self, id_tokens):
-        # TODO: Write doc-string
+        """Construct indices from given id: tokens dict
+
+        Parameters
+        ==========
+        id_tokens: dict
+            Dictionary of id: tokens
+
+        Returns
+        =======
+        tuple:
+            Inverted index and Bigram index
+        """
         id_terms = self.get_id_terms(id_tokens)
         return self.construct_indices_from_id_terms(id_terms)
 
     @staticmethod
     def save_index(path, index):
-        # TODO: Write doc-string
+        """Save index to given path
+
+        Parameters
+        ==========
+        path: str
+            Path to write given index
+        index: dict
+            Index to save
+        """
         with open(path, "w") as f:
             f.write(json.dumps(index))
 
     @staticmethod
     def convert_set_to_list(dict_):
-        # TODO: Write doc-string
+        """Convert set valued dict to list valued dict
+
+        Parameters
+        ==========
+        dict_: dict
+            Dictionary to be converted
+
+        Returns
+        =======
+        dict:
+            Converted dictionary
+        """
         return {
             key: list(val)
             for key, val in dict_.items()
