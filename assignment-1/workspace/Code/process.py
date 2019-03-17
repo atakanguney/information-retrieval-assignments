@@ -75,7 +75,7 @@ class Processor(object):
         query = query.strip().casefold()
         return query
 
-    def get_keywords(self, query):
+    def get_keywords(self, query, query_type):
         """Get keywords from the query
 
         Parameters
@@ -83,15 +83,23 @@ class Processor(object):
         query: str
             Query string
 
+        query_type: str
+            Type of the query
+
         Returns
         =======
             list:
                 List of keywords to search
         """
-        separators = ["and", "or"]
+        
+        if query_type == "conjunctive":
+            keywords = query.split(" AND ")
+        elif query_type == "disjunctive":
+            keywords = query.split(" OR ")
+        elif query_type == "wildcard":
+            keywords = [query]
 
-        keywords = [keyword for keyword in query.split() if keyword not in separators]
-        return keywords
+        return [keyword.casefold() for keyword in keywords]
 
     def get_matched_terms(self, bigrams, begin, end):
         """Get matched terms
@@ -170,21 +178,24 @@ class Processor(object):
         """
         if not query:
             return []
-        query = self.preprocess_query(query)
         if query_type == "wildcard":
             if "*" not in query:
-                terms = self.get_keywords(query)
+                terms = self.get_keywords(query, query_type)
             else:
+                query = self.preprocess_query(query)
                 begin, end = query.split("*")
                 bigrams = self.get_bigrams(begin, end)
                 terms = self.get_matched_terms(bigrams, begin, end)
         else:
-            terms = self.get_keywords(query)
+            terms = self.get_keywords(query, query_type)
 
         return sorted(self.get_matched_documents(terms, query_type))
 
 
 if __name__ == "__main__":
+    if len(sys.argv) < 3:
+        raise ValueError("Not enough args")
+
     script_path = os.path.abspath(__file__)
     script_dir = os.path.dirname(script_path)
     script_parent = os.path.dirname(script_dir)
