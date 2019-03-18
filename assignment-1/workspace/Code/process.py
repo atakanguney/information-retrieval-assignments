@@ -9,14 +9,14 @@ class Processor(object):
     """Boolean Processor Class
 
     Attributes
-    ==========
+    ----------
     inverted_index: dict
         Index for terms
     bigram_index: dict
         Index for bigrams
 
     Parameters
-    ==========
+    ----------
     inverted_index_path: str
         Path to read inverted index
     bigrams_index_path: str
@@ -35,13 +35,13 @@ class Processor(object):
         bigrams for beginning of query and ending of query
 
         Parameters
-        ==========
+        ----------
         begin: str
             String that shoul match with beginning
         end: str
             String that shoul match with ending
         Returns
-        =======
+        -------
             list:
                 List of bigrams
         """
@@ -63,12 +63,12 @@ class Processor(object):
         produces bigram or keyword list
 
         Parameters
-        ==========
+        ----------
         query: str
             Query string
 
         Returns
-        =======
+        -------
             str:
                 Preprocessed query
         """
@@ -79,7 +79,7 @@ class Processor(object):
         """Get keywords from the query
 
         Parameters
-        ==========
+        ----------
         query: str
             Query string
 
@@ -87,7 +87,7 @@ class Processor(object):
             Type of the query
 
         Returns
-        =======
+        -------
             list:
                 List of keywords to search
         """
@@ -108,7 +108,7 @@ class Processor(object):
         applies post filtering to get rid of false positives
 
         Parameters
-        ==========
+        ----------
         bigrams: list
             List of bigrams
         begin: str
@@ -116,7 +116,7 @@ class Processor(object):
         end: str
             String that shoul match with ending
         Returns
-        =======
+        -------
             list:
                 List of terms that are matched with bigrams and
                 they are 'POST-FILTERED'
@@ -141,14 +141,14 @@ class Processor(object):
         """Get matched documents from inverted index
 
         Parameters
-        ==========
+        ----------
         terms: list
             List of terms to be searched in inverted index
         type_: str
             Type of query
 
         Returns
-        =======
+        -------
             list:
                 List of unique document ids for qiven terms
         """
@@ -165,14 +165,14 @@ class Processor(object):
         """Search for query string
 
         Parameters
-        ==========
+        ----------
         query: str
             Query string
         query_type: str
             Query type
 
         Returns
-        =======
+        -------
             list:
                 Sorted list of matched document ids
         """

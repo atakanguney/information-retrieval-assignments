@@ -12,12 +12,12 @@ class Reader(object):
         """Get records from raw text
 
         Parameters
-        ==========
+        ----------
         raw_text: str
             Raw text data read from file
 
         Yields
-        ======
+        ------
         str:
             Record
         """
@@ -30,11 +30,11 @@ class Reader(object):
         """Get id of a record
 
         Parameters
-        ==========
+        ----------
         record: str
 
         Returns
-        =======
+        -------
         int:
             id of the record
         """
@@ -49,12 +49,12 @@ class Reader(object):
         """Get title between <'tag'> tags
 
         Parameters
-        ==========
+        ----------
         text: str
             Text to extract 'tag'
 
         Returns
-        =======
+        -------
         str:
             Matched 'tag'
         """
@@ -73,12 +73,12 @@ class Reader(object):
         """Read whole file
 
         Parameters
-        ==========
+        ----------
         path: str
             Path to file
 
         Returns
-        =======
+        -------
         str:
             Raw Text
         """
@@ -90,12 +90,12 @@ class Reader(object):
         """Get id, title and body
 
         Parameters
-        ==========
+        ----------
         record: str
             Text to extract
 
         Returns
-        =======
+        -------
         str:
             id, title and body
         """
@@ -121,14 +121,14 @@ class Tokenizer(object):
     """Tokenizer Class
     
     Attributes
-    ==========
+    ----------
     punctuations: list
         Puntuations that are removed from the text
     stopwords: list
         Stopwords that are ignored when text is processed
 
     Parameters
-    ==========
+    ----------
     punctuations_path: str
         Path to punctuations list
     stopwords_path: str
@@ -139,12 +139,12 @@ class Tokenizer(object):
         """Read punctuations from file
 
         Parameters
-        ==========
+        ----------
         path: str
             Path to punctuations list
     
         Returns
-        =======
+        -------
         list:
             List of punctuations
         """    
@@ -156,12 +156,12 @@ class Tokenizer(object):
         """Read stopwords
 
         Parameters
-        ==========
+        ----------
         path: str
             Path to stopwords list
 
         Returns
-        =======
+        -------
         list:
             List of stopwords
         """
@@ -173,12 +173,12 @@ class Tokenizer(object):
         """Get number of tokens from id_tokens dict
 
         Parameters
-        ==========
+        ----------
         id_tokens: dict
             Dict of id: list of tokens
 
         Returns
-        =======
+        -------
         int:
             Number of tokens in corpus
         """
@@ -192,12 +192,12 @@ class Tokenizer(object):
         """Get number of terms and top 20 frequent token
 
         Parameters
-        ==========
+        ----------
         id_tokens: dict
             Dict of id: list of tokens
 
         Returns
-        =======
+        -------
         tuple:
             Number of unique tokens in the corpus and top 20 frequent tokens
         """
@@ -216,12 +216,12 @@ class Tokenizer(object):
         """Replace punctuations for space for given text
 
         Parameters
-        ==========
+        ----------
         text: str
             String to replace punctuations
 
         Returns
-        =======
+        -------
         str:
             String that punctuations are replaced with space
         """
@@ -233,12 +233,12 @@ class Tokenizer(object):
         """Remove stopwords from the list of words
 
         Parameters
-        ==========
+        ----------
         words: list
             List of words
 
         Returns
-        =======
+        -------
         list:
             List of words that stopwords are excluded
         """
@@ -251,12 +251,12 @@ class Tokenizer(object):
         """Split text into tokens by space
 
         Parameters
-        ==========
+        ----------
         text: str
             Text to be splitted
 
         Returns
-        =======
+        -------
         list:
             List of tokens
         """
@@ -266,12 +266,12 @@ class Tokenizer(object):
         """Replace punctuations and split tokens
 
         Parameters
-        ==========
+        ----------
         text: str
             Text to replace punctuations and split
 
         Returns
-        =======
+        -------
         list:
             List of tokens after punctuations replaced by space
             and splitted by space
@@ -288,12 +288,12 @@ class Tokenizer(object):
         """Apply case folding to every token in given token list
 
         Parameters
-        ==========
+        ----------
         tokens: list
             List of tokens
 
         Returns
-        =======
+        -------
         list:
             List of tokens that each token is applied casefolding
         """
@@ -303,12 +303,12 @@ class Tokenizer(object):
         """Tokenize given text
 
         Parameters
-        ==========
+        ----------
         text: str
             Text to tokenize
 
         Returns
-        =======
+        -------
         list:
             List of tokens after tokenization procedure is applied
         """
@@ -334,11 +334,11 @@ class Indexer(object):
         Merges list of indices that are dict
 
         Parameters
-        ==========
+        ----------
         indices: list of index
 
         Returns
-        =======
+        -------
         dict:
             Merged indices
         """
@@ -355,12 +355,12 @@ class Indexer(object):
         A dictionary is constructed by bigrams generated from the given word
 
         Parameters
-        ==========
+        ----------
         word: str
             Word to extract bigram index
 
         Returns
-        =======
+        -------
         dict:
             Index for given word
         """
@@ -374,12 +374,12 @@ class Indexer(object):
         """Construct inverted index and bigram index
 
         Parameters
-        ==========
+        ----------
         id_terms: dict
             Dict of id: terms
 
         Returns
-        =======
+        -------
         tuple:
             Inverted index and Bigram index
         """
@@ -398,12 +398,12 @@ class Indexer(object):
         """Get id: terms pairs for given id: tokens pairs
 
         Parameters
-        ==========
+        ----------
         id_tokens: dict
             Dictionary of id: tokens
 
         Returns
-        =======
+        -------
         dict:
             Dictionary of id: terms
         """
@@ -416,12 +416,12 @@ class Indexer(object):
         """Construct indices from given id: tokens dict
 
         Parameters
-        ==========
+        ----------
         id_tokens: dict
             Dictionary of id: tokens
 
         Returns
-        =======
+        -------
         tuple:
             Inverted index and Bigram index
         """
@@ -433,7 +433,7 @@ class Indexer(object):
         """Save index to given path
 
         Parameters
-        ==========
+        ----------
         path: str
             Path to write given index
         index: dict
@@ -447,12 +447,12 @@ class Indexer(object):
         """Convert set valued dict to list valued dict
 
         Parameters
-        ==========
+        ----------
         dict_: dict
             Dictionary to be converted
 
         Returns
-        =======
+        -------
         dict:
             Converted dictionary
         """
