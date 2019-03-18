@@ -121,9 +121,9 @@ class Processor(object):
                 List of terms that are matched with bigrams and
                 they are 'POST-FILTERED'
         """
-        begin_, end_ = "^" + begin + ".*", ".*" + end + "$"
+        pattern = "^" + begin + ".*" + end + "$"
         def postprocess(term):
-            if re.match(begin_, term) and re.match(end_, term):
+            if re.match(pattern, term):
                 return True
             else:
                 return False
